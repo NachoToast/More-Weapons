@@ -1,0 +1,113 @@
+NachoToast's More Weapons Datapack
+Version: 0.9.4
+Resource Pack Version: 0.2
+Patches: [None]
+----------------------------------------------------------------------------------------------------------------------------
+Credits:
+	-Ideas, Scythe Textures: Inazuma
+	-Implementation: NachoToast
+	-Polish, Scythe Textures: Yoan
+	-Big thanks to vdvman1 and dragonmaster95 from the r/MinecraftCommands Discord server.
+----------------------------------------------------------------------------------------------------------------------------
+Changelog:
+	Version 0.9.4 [27/10/2020 2:44pm NZT]
+		-Tweaked prepend.mcfunction in BetterInspect to support multiple scythes when BetterHotbar is enabled.
+		-Tweaked (re)load messages to be more descriptive and standardised, and put in error message 5 for config errors.
+		-Added bats, striders, turtles, trader llamas, and donkeys to animals.json
+		-Added the Accursed Greatsword.
+	Version 0.9.3 [27/10/2020 10:58am NZT]
+		-Added more info about BetterHotbar and BetterInspect to info.txt
+		-Formatted info.txt
+		-Tweaked scaling rendering of the resource pack sprites, with different sizes for each level:
+			5: 150%, 4: 140%, 3: 130%, 2: 110%, 1: 105%
+		-Tweaked code so the recently added sprites are used, this works better if you're using BetterInspect.
+	Version 0.9.2 [27/10/2020 9:33am NZT]
+		-Added in more sprites for the scythe, which change based on number of souls collected.
+		-Added version.txt to resourcepack so it can be up to date.
+	Version 0.9.1 [27/10/2020 12:36am NZT]
+		-Change predicate from 1.0 to 0.1, as it should be.
+		-Fixed load related mcfunction files to actually work on reload (init and init_check).
+		-Removed enchantments on the non-specialized scythe (given through the give.mcfunction file).
+		-Bees have been added to animals.json
+	Version 0.9
+		-Fixed raycasting bugs with players and hit_entity1.mcfunction
+		-Enchantments now always show in lore field.
+		-By default scythe now has efficiency V and silk touch I.
+		-'Soul Harvesting' fake enchant has been changed to 'Curse of Eternal Growth'
+		-Added minecrat:player and minecraft:chicken to animals.json
+		-Modified BetterInspect to dynamically update lore text on soul level upgrade.
+		-Added chat info popups for first load of datapack, triggered by minecraft load function.
+		-Marked unused(?) .mcfunction files as deprecated.
+		-Added in error messages 3 and 4 if said unused files were actually executed by something.
+		-Added info.txt
+		-Changed level up requirement from 10 souls to 100.
+		-Added portal particles to occasionally appear on harvestable entities.
+		-Base attack speed of scythe changed from 1.8 to -3, (levelled up accordingly changed from 11.8 to 8).
+		-Made hover info for BetterInspect and BetterHotbar more intuitive.
+----------------------------------------------------------------------------------------------------------------------------
+To Do:
+	Diversify bonuses.
+		-Water breathing for aquatic.
+		-Fire aspect.
+	Add invisible CustomModelData to barrier texture for smoother BetterHotbar transition.
+	Use for corrupted souls (maybe durability repair?)
+	Max out all levels = apply to everything; maybe.
+	Spear of Justice
+----------------------------------------------------------------------------------------------------------------------------
+BetterInspect:
+		By default this is off. Due to hard-coded limitations in-game, it's impossible to modify player data, this includes
+		changing the nbt data of items in the player's inventory, such as changing the lore text of an item they are holding,
+		(lore text is the text shown where the enchantments are). Because of this limitation, the only way (normally) that
+		you can view the soul group levels of the scythe is by dropping it, and it'll display the info in chat.
+
+		BetterInspect is a workaround for this, it works by summoning the item at the players location instead of directly
+		giving it to them using the replaceitem command. It's a little more complicated than that however, as the game
+		cannot directly copy a numerical scoreboard value (i.e. the soul group level of the player) to a text field (i.e.
+		the lore of the soul scythe), without using something to first convert the numerical data into text data. 
+
+		This is where the sign comes in, when the BetterInspect function is called (such as when a player looks at a specific
+		entity or upgrades a specific soul group level), it spawns a sign at y=0 at the player's position and encodes their
+		scoreboard data onto the sign, and then copies the sign's text data onto the lore data of the summoned scythe at the
+		player's feet. Afterwards the sign is replaced with bedrock or air (if in the end dimension).
+
+		The reason this is off by default is that summoning a sign, albeit temporarily, might cause some issues in worlds where
+		bedrock does not normally exist at y=0 (such as custom generated terrains for example). So while it is recommended to
+		turn BetterInspect on, do not do so if you're running a specially generated world, or check with someone who is familiar
+		with the generation settings of that world before enabling BetterInspect (You can also ask NachoToast to make a patch
+		for the world, if all else fails).
+
+		You can turn BetterInspect off at any time with the command `/scoreboard players reset #ntcs.betterinspect`
+		You can turn BetterInspect on at any time with the command `/scoreboard players set #ntcs.betterinspect ntcs.temp 1`
+----------------------------------------------------------------------------------------------------------------------------
+BetterHotbar:
+	By default this is off, and is only applicable to worlds where BetterInspect is enabled. Because BetterInspect uses
+	summoning functions to give the player the scythe, instead of replaceitem, the scythe (when it is picked up by the
+	player) will by default be put in the first free hotbar slot of the player. This is a very minor annoyance, especially
+	if the player wants their lower hotbar slots to be free.
+	
+	BetterHotbar works by testing which hotbar slot of the player is active, by temporarily filling their empty hotbar
+	slots with barrier blocks, removing the one which is in the active hotbar slot, and then allowing the player to pick
+	up the scythe before finally removing the placeholder barrier blocks, all in the span of 2 ticks.
+	
+	While a nice quality-of-life feature, this aforementioned process is noticeable when it occurs, and the player can both
+	hear and see the barrier blocks being put into their inventory despite their short timespan. Because of this, BetterHotbar
+	is off by default, even if BetterInspect has been enabled.
+	
+	You can turn BetterHotbar off at any time with the command `/scoreboard players reset #ntcs.betterinspect2`
+	You can turn BetterHotbar on at any time with the command `/scoreboard players set #ntcs.betterinspect2 ntcs.temp 1`
+----------------------------------------------------------------------------------------------------------------------------
+Debug:
+	-To get debug stats, give yourself the tag `ntcs.stats`.
+	-If you find a bug or get an error message, please report it to NachoToast.
+	-You can reload the datapack using the command `/reload`, this won't affect whether BetterInspect and BetterHotbar are 
+	enabled or not, but it should tell you if they are/aren't nonetheless.
+	-To give yourself the scythe, run the command `/function ntcs.nachotoast:give`
+----------------------------------------------------------------------------------------------------------------------------
+Socials:
+	-NachoToast: [Discord: NachoToast#9000] [Minecraft: NachoToast]
+	-Inazuma: [Discord: Inazuma#8417]
+	-Yoann: [Discord: YoannnBB2#2728]
+	-NachoToast's Discord Server: https://discord.gg/PEGUcb4
+
+	
+		

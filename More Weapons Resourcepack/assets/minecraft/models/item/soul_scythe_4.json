@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:item/handheld_big_4",
+	"textures": {
+	  "layer0": "minecraft:item/scythe/soul_scythe_3000_4000"
+	  }
+  }

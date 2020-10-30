@@ -1,0 +1,3 @@
+scoreboard players set #ntcs.betterinspect ntcs.temp 1
+tellraw @s {"text":"BetterInspect now enabled.","color":"green"}
+tellraw @s {"text":"If you would like BetterHotbar on, click here (or hover for more info).","color":"yellow","hoverEvent":{"action":"show_text","value":"Due to /replaceitem command limitations the scythe gets put in the first free slot of the hotbar using a /give command when switching between entity soul groups. It's possible to make it be given in the active hotbar slot, but is less smooth and visually intrusive.\n\nFor more info see info.txt in the datapack files."},"clickEvent":{"action":"run_command","value":"/function ntcs.nachotoast:better_inspect/better_hotbar"}}

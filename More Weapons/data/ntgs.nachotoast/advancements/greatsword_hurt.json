@@ -1,0 +1,15 @@
+{
+    "criteria": {
+        "hurt": {
+            "trigger": "minecraft:player_hurt_entity",
+            "conditions": {
+                "player": {
+                    "nbt": "{SelectedItem:{tag:{ntgs.AccursedGreatsword:1b}}}"
+                }
+            }
+        }
+    },
+    "rewards": {
+        "function":"ntgs.nachotoast:hurt"
+    }
+}

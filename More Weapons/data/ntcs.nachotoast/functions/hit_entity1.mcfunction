@@ -1,0 +1,3 @@
+execute if score #ntcs.betterinspect ntcs.temp matches 1 as @p[scores={ntcs.head=1..5},nbt={SelectedItem:{tag:{ntcs.SoulScythe:1b}}}] run function ntcs.nachotoast:better_inspect/entity1
+execute as @p[scores={ntcs.head=1..5},nbt={SelectedItem:{tag:{ntcs.SoulScythe:1b}}}] run function ntcs.nachotoast:give
+execute unless score #ntcs.betterinspect ntcs.temp matches 1 run scoreboard players reset @p[] ntcs.head

@@ -1,0 +1,2 @@
+execute at @s as @e[distance=0..5,nbt={HurtTime:10s},type=!#ntgs.nachotoast:wither_resistant,nbt=!{ActiveEffects:[{Id:20b}]}] unless entity @s[advancements={ntgs.nachotoast:hurt=true}] run effect give @s minecraft:wither 5 1 false
+advancement revoke @s only ntgs.nachotoast:greatsword_hurt

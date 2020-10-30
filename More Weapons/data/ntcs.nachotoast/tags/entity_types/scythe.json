@@ -1,0 +1,10 @@
+{
+    "description": "all entites the scythe goes hungies for",
+    "values": [
+      "#ntcs.nachotoast:animals",
+      "#ntcs.nachotoast:aquatic",
+      "#ntcs.nachotoast:raiders",
+      "#ntcs.nachotoast:spiders",
+      "#ntcs.nachotoast:undead"
+    ]
+  }

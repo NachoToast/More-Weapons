@@ -1,0 +1,7 @@
+{
+  "description": "spiders",
+  "values": [
+    "minecraft:spider",
+    "minecraft:cave_spider"
+  ]
+}

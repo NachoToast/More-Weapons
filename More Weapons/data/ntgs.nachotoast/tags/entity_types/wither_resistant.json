@@ -1,0 +1,7 @@
+{
+  "description": "animals",
+  "values": [
+    "minecraft:wither",
+    "minecraft:wither_skeleton"
+  ]
+}

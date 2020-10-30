@@ -1,0 +1,12 @@
+{
+  "description": "aquatic animals",
+  "values": [
+    "minecraft:pufferfish",
+    "minecraft:squid",
+    "minecraft:salmon",
+    "minecraft:drowned",
+    "minecraft:tropical_fish",
+    "minecraft:guardian",
+    "minecraft:elder_guardian"
+  ]
+}
